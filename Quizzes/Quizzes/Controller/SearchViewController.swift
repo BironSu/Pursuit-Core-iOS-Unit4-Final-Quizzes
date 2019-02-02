@@ -10,21 +10,26 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    var searchView = SearchView()
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        navigationItem.title = "Search"
+        searchView.searchCollectionView.dataSource = self
+        view.addSubview(searchView)
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as? SearchCollectionViewCell else {return UICollectionViewCell()}
+        cell.quizLabel.text = "TESTTING"
+        return cell
     }
-    */
-
+    
+    
 }

@@ -1,5 +1,5 @@
 //
-//  QuizCollectionViewCell.swift
+//  SearchCollectionViewCell.swift
 //  Quizzes
 //
 //  Created by Biron Su on 2/1/19.
@@ -8,16 +8,14 @@
 
 import UIKit
 
-class QuizCollectionViewCell: UICollectionViewCell {
-    
+class SearchCollectionViewCell: UICollectionViewCell {
     lazy var quizLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .green
-        label.text = "testing"
-        label.numberOfLines = 10
-        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.backgroundColor = .white
+        label.font = UIFont.systemFont(ofSize: 15.0)
         label.layer.borderWidth = 1.0
         label.layer.cornerRadius = 5.0
+        label.numberOfLines = 0
         return label
     }()
     lazy var button: UIButton = {
@@ -30,15 +28,17 @@ class QuizCollectionViewCell: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .green
-        setUpConstraints()
+        backgroundColor = .white
+        self.layer.borderWidth = 2.0
+        self.layer.cornerRadius = 5.0
+        commonInit()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setUpConstraints()
+        commonInit()
         fatalError("init(coder:) has not been implemented")
     }
-    private func setUpConstraints() {
+    private func commonInit() {
         setupLabel()
         setupButton()
     }
@@ -47,8 +47,8 @@ class QuizCollectionViewCell: UICollectionViewCell {
         quizLabel.translatesAutoresizingMaskIntoConstraints = false
         quizLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         quizLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        quizLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         quizLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        quizLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         quizLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
     private func setupButton() {
@@ -59,3 +59,4 @@ class QuizCollectionViewCell: UICollectionViewCell {
         button.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
     }
 }
+

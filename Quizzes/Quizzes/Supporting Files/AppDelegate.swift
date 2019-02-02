@@ -9,11 +9,20 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
   var window: UIWindow?
 
-
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is CreateViewController {
+            if let createVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "CreateID") {
+                createVC.modalPresentationStyle = .overFullScreen
+                tabBarController.present(createVC, animated: true, completion: nil)
+                return false
+            }
+        }
+        return true
+    }
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     return true
