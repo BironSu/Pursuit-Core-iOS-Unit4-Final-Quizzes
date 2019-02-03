@@ -10,6 +10,7 @@ import UIKit
 
 class CreateViewController: UIViewController {
 
+    var quizFavorites = QuizListModel.getQuiz()
     @IBOutlet weak var createButton: UIBarButtonItem!
 
     @IBOutlet weak var quizTextView: UITextView!
@@ -43,6 +44,9 @@ class CreateViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func createPressed(_ sender: UIBarButtonItem) {
+        let date = Date.getISOTimestamp()
+        let quizFavorite = QuizFavorite.init(quizTitle: quizTextView.text, facts: [factOneTextView.text, factTwoTextView.text], createdAt: date)
+        QuizListModel.addQuiz(quiz: quizFavorite)
         dismiss(animated: true, completion: nil)
     }
 }

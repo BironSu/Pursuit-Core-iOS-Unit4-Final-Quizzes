@@ -8,8 +8,10 @@
 
 import Foundation
 
+//struct UserNames: Codable {
+//    let userName: String
+//}
 struct QuizFavorite: Codable {
-    let id: String
     let quizTitle: String
     let facts: [String]
     let createdAt: String

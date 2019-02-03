@@ -25,6 +25,14 @@
             </objects>
             <point key="canvasLocation" x="1279.7101449275362" y="-129.24107142857142"/>
         </scene>
+        <!--Quiz Detail View Controller-->
+        <scene sceneID="9Wr-BQ-xjE">
+            <objects>
+                <viewController storyboardIdentifier="QuizDetailViewController" id="Mgb-bB-CJf" customClass="QuizDetailViewController" customModule="Quizzes" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIU-Pc-Uw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2195" y="-106"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="fZH-mv-E7K">
             <objects>
@@ -131,7 +139,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNB-Ld-Dmi">
                                         <rect key="frame" x="157" y="25" width="100" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="Can-Mh-wdj"/>
+                                            <constraint firstAttribute="width" constant="100" id="yZQ-No-yiR"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="placeholder-image"/>
                                         <connections>
@@ -141,7 +149,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViU-qa-d1P">
                                         <rect key="frame" x="0.0" y="215" width="414" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="kD6-Xi-adO"/>
+                                            <constraint firstAttribute="height" constant="30" id="aD1-g7-LlJ"/>
                                         </constraints>
                                         <state key="normal" title="@username"/>
                                         <connections>
@@ -151,12 +159,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ViU-qa-d1P" firstAttribute="leading" secondItem="gmB-Jt-v5X" secondAttribute="leading" id="6L6-m5-r1q"/>
-                                    <constraint firstItem="ViU-qa-d1P" firstAttribute="top" secondItem="cNB-Ld-Dmi" secondAttribute="bottom" constant="90" id="aS0-a2-ab2"/>
-                                    <constraint firstAttribute="bottom" secondItem="ViU-qa-d1P" secondAttribute="bottom" constant="5" id="iFA-4r-nCv"/>
-                                    <constraint firstAttribute="trailing" secondItem="ViU-qa-d1P" secondAttribute="trailing" id="jGL-mX-LCq"/>
-                                    <constraint firstItem="ViU-qa-d1P" firstAttribute="centerX" secondItem="cNB-Ld-Dmi" secondAttribute="centerX" id="l29-JP-3ON"/>
-                                    <constraint firstItem="cNB-Ld-Dmi" firstAttribute="top" secondItem="gmB-Jt-v5X" secondAttribute="top" constant="25" id="ndu-VW-ii8"/>
+                                    <constraint firstItem="ViU-qa-d1P" firstAttribute="top" secondItem="cNB-Ld-Dmi" secondAttribute="bottom" constant="90" id="Det-Xm-k7B"/>
+                                    <constraint firstAttribute="bottom" secondItem="ViU-qa-d1P" secondAttribute="bottom" constant="5" id="EUI-42-4pi"/>
+                                    <constraint firstItem="cNB-Ld-Dmi" firstAttribute="centerX" secondItem="ViU-qa-d1P" secondAttribute="centerX" id="MUU-gI-fXt"/>
+                                    <constraint firstAttribute="trailing" secondItem="ViU-qa-d1P" secondAttribute="trailing" id="Mcb-f1-cyb"/>
+                                    <constraint firstItem="ViU-qa-d1P" firstAttribute="leading" secondItem="gmB-Jt-v5X" secondAttribute="leading" id="e8k-GF-ONn"/>
+                                    <constraint firstItem="cNB-Ld-Dmi" firstAttribute="top" secondItem="gmB-Jt-v5X" secondAttribute="top" constant="25" id="f3v-Jm-oYZ"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWa-vt-5ve">
