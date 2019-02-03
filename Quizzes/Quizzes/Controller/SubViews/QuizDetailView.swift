@@ -33,7 +33,7 @@ class QuizDetailView: UIView {
         fatalError("init(coder:) failed to implement")
     }
     private func commonInit(){
-        self.collectionView.register(QuizCollectionViewCell.self, forCellWithReuseIdentifier: "QuizCell")
+        self.collectionView.register(QuizDetailCollectionViewCell.self, forCellWithReuseIdentifier: "QuizCell")
         backgroundColor = .white
         setUpConstraints()
     }

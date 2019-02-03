@@ -18,6 +18,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 20.0)
         label.layer.borderWidth = 1.0
         label.layer.cornerRadius = 5.0
+        label.textAlignment = .center
         return label
     }()
     lazy var button: UIButton = {

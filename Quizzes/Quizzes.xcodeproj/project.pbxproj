@@ -32,6 +32,7 @@
 		937E72FB2204DC9000ABC0F9 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E72FA2204DC9000ABC0F9 /* TabBarViewController.swift */; };
 		937E72FF2207518F00ABC0F9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E72FE2207518F00ABC0F9 /* UserDefaults.swift */; };
 		937E7301220777D300ABC0F9 /* QuizDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E7300220777D300ABC0F9 /* QuizDetailViewController.swift */; };
+		937E730322078C6500ABC0F9 /* VCReloadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E730222078C6500ABC0F9 /* VCReloadData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		937E72FA2204DC9000ABC0F9 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		937E72FE2207518F00ABC0F9 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		937E7300220777D300ABC0F9 /* QuizDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailViewController.swift; sourceTree = "<group>"; };
+		937E730222078C6500ABC0F9 /* VCReloadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCReloadData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				577118D922037B5B00B9DD0B /* DataPersistenceManager.swift */,
+				937E730222078C6500ABC0F9 /* VCReloadData.swift */,
 			);
 			path = "File Manager Helpers";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				937E72FF2207518F00ABC0F9 /* UserDefaults.swift in Sources */,
 				937E7301220777D300ABC0F9 /* QuizDetailViewController.swift in Sources */,
 				937E72DF22049E9C00ABC0F9 /* ProfileViewController.swift in Sources */,
+				937E730322078C6500ABC0F9 /* VCReloadData.swift in Sources */,
 				937E72E322049EB500ABC0F9 /* SearchView.swift in Sources */,
 				937E72E922049EEF00ABC0F9 /* QuizSearch.swift in Sources */,
 				937E72FB2204DC9000ABC0F9 /* TabBarViewController.swift in Sources */,

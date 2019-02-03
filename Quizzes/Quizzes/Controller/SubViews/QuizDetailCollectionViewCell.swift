@@ -9,27 +9,30 @@
 import UIKit
 
 class QuizDetailCollectionViewCell: UICollectionViewCell {
-    lazy var quizTextView: UITextView = {
-        let textView = UITextView()
-        return textView
+    lazy var quizTextView: UILabel = {
+        let textLabel = UILabel()
+        textLabel.layer.borderWidth = 1.0
+        textLabel.numberOfLines = 0
+        textLabel.textAlignment = .center
+        return textLabel
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .lightGray
         self.layer.borderWidth = 2.0
+        setUpTextView()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+        setUpTextView()
         fatalError("init(coder:) has not been implemented")
     }
     private func setUpTextView() {
         addSubview(quizTextView)
         quizTextView.translatesAutoresizingMaskIntoConstraints = false
-        quizTextView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        quizTextView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        quizTextView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        quizTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        quizTextView.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        quizTextView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        quizTextView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        quizTextView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        quizTextView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
 }

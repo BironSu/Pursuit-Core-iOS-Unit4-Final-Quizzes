@@ -34,6 +34,7 @@ class QuizViewController: UIViewController {
         self.quizCollectionView.register(QuizCollectionViewCell.self, forCellWithReuseIdentifier: "QuizCollectionCell")
         self.title = "Quizzes"
         self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
+        DataManager.shared.firstVC = self
         setupConstraints()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +48,22 @@ class QuizViewController: UIViewController {
         quizCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
         quizCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
     }
+    @objc func menuAlert(sender: UIButton) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            QuizListModel.deleteFavoriteQuiz(index: sender.tag)
+            self.quizFavorites = QuizListModel.getQuiz()
+            })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:
+        {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
 }
 
 extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -58,6 +75,9 @@ extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCollectionCell", for: indexPath) as? QuizCollectionViewCell else {
             return UICollectionViewCell()}
         let cellToSet = quizFavorites[indexPath.row]
+        cell.button.tag = indexPath.row
+        cell.button.addTarget(self, action: #selector(menuAlert), for: .touchUpInside)
+        
         cell.quizLabel.text = cellToSet.quizTitle
         return cell
     }

@@ -16,12 +16,13 @@ class SearchCollectionViewCell: UICollectionViewCell {
         label.layer.borderWidth = 1.0
         label.layer.cornerRadius = 5.0
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor = .gray
-        button.setTitle("•••", for: .normal)
+        button.setImage(UIImage(named: "add-icon-filled"), for: .normal)
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 2.0
         return button
@@ -56,7 +57,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 50.0).isActive = true
     }
 }
 

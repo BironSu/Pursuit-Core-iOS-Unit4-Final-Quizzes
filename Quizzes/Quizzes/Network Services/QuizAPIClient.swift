@@ -9,7 +9,7 @@
 import Foundation
 
 final class QuizAPIClient{
-    static func getQuiz(data: Data, completionHandler: @escaping (AppError?, [Quiz]?) -> Void) {
+    static func getQuiz(data: Data?, completionHandler: @escaping (AppError?, [Quiz]?) -> Void) {
         let getQuizEndpoint = "http://5c4d4c0d0de08100147c59b5.mockapi.io/api/v1/quizzes"
         NetworkHelper.shared.performDataTask(endpointURLString: getQuizEndpoint, httpMethod: "GET", httpBody: data) { (appError, data) in
             if let appError = appError {

@@ -32,8 +32,9 @@ extension QuizDetailViewController: UICollectionViewDataSource, UICollectionView
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCell", for: indexPath) as? QuizDetailCollectionViewCell {
-            cell.quizTextView.text = quiz.facts[indexPath.row]
-        }
+        let cell = collectionView.cellForItem(at: indexPath) as! QuizDetailCollectionViewCell
+        UIView.transition(with: cell, duration: 1.0, options: [.transitionFlipFromLeft], animations: {
+            cell.quizTextView.text = self.quiz.facts[indexPath.row]
+        }, completion: nil)
     }
 }

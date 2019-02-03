@@ -47,6 +47,7 @@ class CreateViewController: UIViewController {
         let date = Date.getISOTimestamp()
         let quizFavorite = QuizFavorite.init(quizTitle: quizTextView.text, facts: [factOneTextView.text, factTwoTextView.text], createdAt: date)
         QuizListModel.addQuiz(quiz: quizFavorite)
+        DataManager.shared.firstVC.quizFavorites = QuizListModel.getQuiz()
         dismiss(animated: true, completion: nil)
     }
 }
