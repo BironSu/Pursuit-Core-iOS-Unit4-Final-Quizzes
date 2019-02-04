@@ -17,7 +17,7 @@ final class QuizAPIClient{
             } else if let data = data {
                 do {
                     let quiz = try JSONDecoder().decode([Quiz].self, from: data)
-                    completionHandler(nil,quiz)
+                    completionHandler(nil,quiz.sorted(by: {$0.quizTitle < $1.quizTitle}))
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }

@@ -36,9 +36,20 @@ class SearchViewController: UIViewController {
         }
     }
     @objc private func addMenu(sender: UIButton) {
-        let date = Date.getISOTimestamp()
-        let quizFave = QuizFavorite.init(quizTitle: searchQuiz[sender.tag].quizTitle, facts: searchQuiz[sender.tag].facts, createdAt: date)
-        QuizListModel.addQuiz(quiz: quizFave)
+        let dupeCheck = DataManager.shared.firstVC.quizFavorites
+        for i in dupeCheck {
+            if i.quizTitle == searchQuiz[sender.tag].quizTitle && i.quizID == searchQuiz[sender.tag].id {
+                let alertController = UIAlertController(title: "Quiz exists already", message: "Can not add same quiz", preferredStyle: .alert)
+                let submitAction = UIAlertAction(title: "OK", style: .default) { alert in
+                }
+                alertController.addAction(submitAction)
+                present(alertController, animated: true)
+            } else {
+                let date = Date.getISOTimestamp()
+                let quizFave = QuizFavorite.init(quizID: searchQuiz[sender.tag].id,quizTitle: searchQuiz[sender.tag].quizTitle, facts: searchQuiz[sender.tag].facts, createdAt: date)
+                QuizListModel.addQuiz(quiz: quizFave)
+            }
+        }
     }
 }
 

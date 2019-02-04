@@ -20,6 +20,7 @@ class CreateViewController: UIViewController {
     let factOnePlaceHolder = "Enter Quiz Fact #1"
     let factTwoPlaceHolder = "Enter Quiz Fact #2"
     let emptyPlaceHolder = "Space left empty..."
+    var createable = false
     override func viewDidLoad() {
         super.viewDidLoad()
         createButton.isEnabled = false
@@ -61,11 +62,22 @@ class CreateViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func createPressed(_ sender: UIBarButtonItem) {
-        let date = Date.getISOTimestamp()
-        let quizFavorite = QuizFavorite.init(quizTitle: quizTextView.text, facts: [factOneTextView.text, factTwoTextView.text], createdAt: date)
-        QuizListModel.addQuiz(quiz: quizFavorite)
-        DataManager.shared.firstVC.quizFavorites = QuizListModel.getQuiz()
-        dismiss(animated: true, completion: nil)
+        if createable == true {
+            let date = Date.getISOTimestamp()
+            let ID = factTwoTextView.text.count + factOneTextView.text.count + quizTextView.text.count
+            let quizFavorite = QuizFavorite.init(quizID: ID.description, quizTitle: quizTextView.text, facts: [factOneTextView.text, factTwoTextView.text], createdAt: date)
+            QuizListModel.addQuiz(quiz: quizFavorite)
+            DataManager.shared.firstVC.quizFavorites = QuizListModel.getQuiz()
+            dismiss(animated: true, completion: nil)
+            
+        } else {
+            let alertController = UIAlertController(title: "Failed to create", message: "Please make sure there is a title and two facts.", preferredStyle: .alert)
+            let submitAction = UIAlertAction(title: "OK", style: .default) { alert in
+                self.quizTextView.isEditable = false
+            }
+            alertController.addAction(submitAction)
+            present(alertController, animated: true)
+        }
     }
 }
 
@@ -79,7 +91,6 @@ extension CreateViewController: UITextViewDelegate {
     }
     func textViewDidChange(_ textView: UITextView) {
         if quizTextView.text.count > 1 {
-            createButton.isEnabled = true
             factOneTextView.isEditable = true
         } else {
             createButton.isEnabled = false
@@ -89,6 +100,14 @@ extension CreateViewController: UITextViewDelegate {
             factTwoTextView.isEditable = true
         } else {
             factTwoTextView.isEditable = false
+        }
+        if factTwoTextView.text.count > 0 && factTwoTextView.text != factTwoPlaceHolder && factTwoTextView.text != emptyPlaceHolder {
+            createButton.isEnabled = true
+            createable = true
+        } else {
+            createable = false
+            // Set createButton.isEnabled to true for alerts
+            createButton.isEnabled = true
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
