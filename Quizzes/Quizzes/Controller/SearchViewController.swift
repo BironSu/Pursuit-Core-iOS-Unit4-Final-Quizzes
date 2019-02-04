@@ -26,6 +26,23 @@ class SearchViewController: UIViewController {
         view.addSubview(searchView)
         setUpCollectionView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        checkUser()
+    }
+    private func checkUser() {
+        if CurrentUser.shared.profile.usernameHolder == "@username" {
+            let alertController = UIAlertController(title: "Invalid User", message: "Please create a valid username at the profile tab", preferredStyle: .alert)
+            let submitAction = UIAlertAction(title: "OK", style: .default) { alert in
+                self.searchView.searchCollectionView.isUserInteractionEnabled = false
+            }
+            alertController.addAction(submitAction)
+            present(alertController, animated: true)
+            
+        } else {
+            self.searchView.searchCollectionView.isUserInteractionEnabled = true
+        }
+        
+    }
     private func setUpCollectionView() {
         QuizAPIClient.getQuiz(data: nil) { (error, quiz) in
             if let error = error {
@@ -36,19 +53,24 @@ class SearchViewController: UIViewController {
         }
     }
     @objc private func addMenu(sender: UIButton) {
+        var titleCheck = [String]()
+        // added line to prevent spamming
+        DataManager.shared.firstVC.quizFavorites = QuizListModel.getQuiz()
         let dupeCheck = DataManager.shared.firstVC.quizFavorites
         for i in dupeCheck {
-            if i.quizTitle == searchQuiz[sender.tag].quizTitle && i.quizID == searchQuiz[sender.tag].id {
-                let alertController = UIAlertController(title: "Quiz exists already", message: "Can not add same quiz", preferredStyle: .alert)
-                let submitAction = UIAlertAction(title: "OK", style: .default) { alert in
-                }
-                alertController.addAction(submitAction)
-                present(alertController, animated: true)
-            } else {
-                let date = Date.getISOTimestamp()
-                let quizFave = QuizFavorite.init(quizID: searchQuiz[sender.tag].id,quizTitle: searchQuiz[sender.tag].quizTitle, facts: searchQuiz[sender.tag].facts, createdAt: date)
-                QuizListModel.addQuiz(quiz: quizFave)
+            titleCheck.append(i.quizTitle)
+        }
+        if titleCheck.contains(searchQuiz[sender.tag].quizTitle) {
+            let alertController = UIAlertController(title: "Quiz exists already", message: "Can not add same quiz", preferredStyle: .alert)
+            let submitAction = UIAlertAction(title: "OK", style: .default) { alert in
+                
             }
+            alertController.addAction(submitAction)
+            present(alertController, animated: true)
+        } else {
+            let date = Date.getISOTimestamp()
+            let quizFave = QuizFavorite.init(quizTitle: searchQuiz[sender.tag].quizTitle, facts: searchQuiz[sender.tag].facts, createdAt: date)
+            QuizListModel.addQuiz(quiz: quizFave)
         }
     }
 }

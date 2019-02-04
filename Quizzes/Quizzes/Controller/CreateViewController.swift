@@ -64,8 +64,7 @@ class CreateViewController: UIViewController {
     @IBAction func createPressed(_ sender: UIBarButtonItem) {
         if createable == true {
             let date = Date.getISOTimestamp()
-            let ID = factTwoTextView.text.count + factOneTextView.text.count + quizTextView.text.count
-            let quizFavorite = QuizFavorite.init(quizID: ID.description, quizTitle: quizTextView.text, facts: [factOneTextView.text, factTwoTextView.text], createdAt: date)
+            let quizFavorite = QuizFavorite.init(quizTitle: quizTextView.text, facts: [factOneTextView.text, factTwoTextView.text], createdAt: date)
             QuizListModel.addQuiz(quiz: quizFavorite)
             DataManager.shared.firstVC.quizFavorites = QuizListModel.getQuiz()
             dismiss(animated: true, completion: nil)

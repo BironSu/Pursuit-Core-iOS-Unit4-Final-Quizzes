@@ -12,7 +12,6 @@ import Foundation
 //    let userName: String
 //}
 struct QuizFavorite: Codable {
-    let quizID: String
     let quizTitle: String
     let facts: [String]
     let createdAt: String
