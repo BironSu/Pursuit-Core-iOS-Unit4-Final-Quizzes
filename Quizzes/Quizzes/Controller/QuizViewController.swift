@@ -15,6 +15,7 @@ class QuizViewController: UIViewController {
             quizCollectionView.reloadData()
         }
     }
+    var testing = false
     lazy var quizCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -39,6 +40,7 @@ class QuizViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         quizFavorites = QuizListModel.getQuiz()
+        print(CurrentUser.shared.profile.usernameHolder)
     }
     private func setupConstraints() {
         view.addSubview(quizCollectionView)

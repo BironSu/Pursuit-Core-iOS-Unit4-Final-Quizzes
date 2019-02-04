@@ -128,7 +128,7 @@
         <!--Profile View Controller-->
         <scene sceneID="ic8-Ob-9JK">
             <objects>
-                <viewController id="KAX-WY-PLw" customClass="ProfileViewController" customModule="Quizzes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="KAX-WY-PLw" customClass="ProfileViewController" customModule="Quizzes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="4" contentMode="scaleToFill" id="RSP-qD-k8o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

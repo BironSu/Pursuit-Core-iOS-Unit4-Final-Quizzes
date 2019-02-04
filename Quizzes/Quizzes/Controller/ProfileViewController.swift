@@ -9,13 +9,16 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var userName: UIButton!
     private var imagePickerViewController: UIImagePickerController!
     private var image: UIImage!
-    
-    var usernameHolder = "@username"
+    var userNames = UserDefaults.standard.object(forKey: "Users Info") as? [String] ?? [String]()
+    var usernameHolder = "@username" {
+        didSet {
+            CurrentUser.shared.profile = self
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Profile"
@@ -47,24 +50,23 @@ class ProfileViewController: UIViewController {
         }
     }
     @objc private func createUser() {
-        var userNames = UserDefaults.standard.array(forKey: "Users Info") as? [String] ?? [String]()
         let alertController = UIAlertController(title: "Please Enter Your Username", message: "No Spaces or Special Characters", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { alert in
             
             if let userInput = alertController.textFields?.first?.text?.lowercased() {
-                if userNames.isEmpty {
+                if self.userNames.isEmpty {
                     let alertCreatedController = UIAlertController(title: "Welcome!", message: "\(userInput) has been created!", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Ok", style: .default) { alert in
                         self.userName.setTitle("@\(userInput)", for: .normal)
-                        userNames.append(userInput)
-                        UserDefaults.standard.set(userNames, forKey: "UsersInfo")
+                        self.userNames.append(userInput)
+                        UserDefaults.standard.set(self.userNames, forKey: "UsersInfo")
                         self.usernameHolder = userInput
                     }
                     alertCreatedController.addAction(okAction)
                     self.present(alertCreatedController, animated: true)
                 } else {
-                        if userNames.contains(userInput) {
+                        if self.userNames.contains(userInput) {
                             let alertWelcomeController = UIAlertController(title: "Logged in.", message: "Welcome back \(userInput)!", preferredStyle: .alert)
                             let okAction = UIAlertAction(title: "Ok", style: .default) {
                                 alert in
@@ -82,8 +84,9 @@ class ProfileViewController: UIViewController {
                             let alertCreatedController = UIAlertController(title: "Welcome!", message: "\(userInput) has been created!", preferredStyle: .alert)
                             let okAction = UIAlertAction(title: "Ok", style: .default) { alert in
                                 self.userName.setTitle("@\(userInput)", for: .normal)
-                                userNames.append(userInput)
-                                UserDefaults.standard.set(userNames, forKey: "UsersInfo")
+                                self.userNames.append(userInput)
+                                // make sure this is typed correctly...
+                                UserDefaults.standard.set(self.userNames, forKey: "Users Info")
                                 let myImage = self.image.pngData()
                                 UserDefaults.standard.set(myImage, forKey: userInput)
                                 self.usernameHolder = userInput

@@ -8,12 +8,13 @@
 
 import Foundation
 final class QuizListModel {
-    private static let filename = "SavedQuiz.plist"
+    private static var filename = "Default.plist"
     static var favoriteQuiz = [QuizFavorite]()
     
     private init() {}
     
     static func saveQuiz() {
+        filename = "\(CurrentUser.shared.profile.usernameHolder).plist"
         let path = DataPersistenceManager.filepathToDocumentsDiretory(filename: filename)
         do {
             let data = try PropertyListEncoder().encode(favoriteQuiz)
@@ -27,6 +28,7 @@ final class QuizListModel {
         saveQuiz()
     }
     static func getQuiz() -> [QuizFavorite] {
+        filename = "\(CurrentUser.shared.profile.usernameHolder).plist"
         let path = DataPersistenceManager.filepathToDocumentsDiretory(filename: filename).path
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
@@ -40,6 +42,8 @@ final class QuizListModel {
             }
         } else {
             print("\(filename) does not exist...")
+            favoriteQuiz.removeAll()
+            saveQuiz()
         }
         return favoriteQuiz
     }

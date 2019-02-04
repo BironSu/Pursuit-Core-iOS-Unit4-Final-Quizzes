@@ -1,5 +1,5 @@
 //
-//  UserDefaults.swift
+//  Username.swift
 //  Quizzes
 //
 //  Created by Biron Su on 2/3/19.
@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class CurrentUser {
+    static let shared = CurrentUser()
+    var profile = ProfileViewController()
+}

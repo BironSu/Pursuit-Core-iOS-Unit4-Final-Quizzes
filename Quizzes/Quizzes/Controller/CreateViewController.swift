@@ -25,6 +25,23 @@ class CreateViewController: UIViewController {
         createButton.isEnabled = false
         textViewSetUps()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        checkUser()
+    }
+    private func checkUser() {
+        if CurrentUser.shared.profile.usernameHolder == "@username" {
+            let alertController = UIAlertController(title: "Invalid User", message: "Please create a valid username at the profile tab", preferredStyle: .alert)
+            let submitAction = UIAlertAction(title: "OK", style: .default) { alert in
+                self.quizTextView.isEditable = false
+            }
+            alertController.addAction(submitAction)
+            present(alertController, animated: true)
+            
+        } else {
+            self.quizTextView.isEditable = true
+        }
+        
+    }
     private func textViewSetUps() {
         quizTextView.text = quizTitlePlaceHolder
         factOneTextView.text = factOnePlaceHolder
